@@ -18,7 +18,9 @@ public class Menu implements IMenu{
         System.out.println("1- atkFis");
         System.out.println("2- atkMag");
         System.out.println("3- Ultimate");
-        System.out.println("4- Ver vida do boss");            
+        System.out.println("4- Ver vida do boss");
+        System.out.println("5- Troca de Status");
+        System.out.println("6- Sair da Batalha");            
     }
     @Override
     public void menuEscolhaBoss() {

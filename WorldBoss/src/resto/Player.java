@@ -2,23 +2,14 @@ package resto;
 
 import ataques.AtaqueUltimate;
 import interfaces.IAtaques;
-import interfaces.IBoss;
 
 public class Player{
     private int atkFis = 500;
     private int atkMag = 500;
-    private IBoss boss;
     private int energy = 0;
 
     public Player(){}
     
-
-    public void setBoss(IBoss boss){
-        this.boss = boss;
-    }
-    public IBoss getBoss(){
-        return this.boss;
-    }
     public void setStatus(int atkFis,int atkMag){
         this.atkMag = atkMag;
         this.atkFis = atkFis;
@@ -54,7 +45,7 @@ public class Player{
     }
     public void trocar(){
         if(this.energy > 0){
-            int i = this.atkFis;
+            int i = this.atkMag;
             this.atkMag = this.atkFis;
             this.atkFis = i;
             this.energy -= 1;

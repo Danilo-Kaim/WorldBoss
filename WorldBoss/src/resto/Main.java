@@ -1,5 +1,6 @@
 package resto;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import ataques.AtaqueFisico;
@@ -8,11 +9,12 @@ import ataques.AtaqueUltimate;
 import bosses.LadinoBoss;
 import bosses.PaladinBoss;
 import bosses.SageBoss;
+import interfaces.IBoss;
 
 
 public class Main {
 
-    public static void batalhaBoss(Player p){
+    public static void batalhaBoss(Player player, IBoss boss){
         Scanner scan = new Scanner(System.in);
         Menu menu = new Menu();
         AtaqueFisico fis = new AtaqueFisico();
@@ -21,28 +23,51 @@ public class Main {
         boolean i = true;
         while(i){
             menu.menuTipoAtaque();
+            System.out.println("Energia: " + player.getEnergy());
             int atk = scan.nextInt();
             switch (atk) {
                 case 1:
-                    double danoFis = p.getBoss().apanhar(p.atacar(fis));
+                    double danoFis = boss.apanhar(player.atacar(fis));
                     System.out.println(danoFis);
+                    IABoss(boss);
                     break;
                 case 2:
-                    double danoMag = p.getBoss().apanhar(p.atacar(mag));
+                    double danoMag = boss.apanhar(player.atacar(mag));
                     System.out.println(danoMag);
+                    IABoss(boss);
                     break;
                 case 3:
-                    double danoUlt = p.getBoss().apanhar(p.atacar(ult));
+                    double danoUlt = boss.apanhar(player.atacar(ult));
                     System.out.println(danoUlt);
+                    IABoss(boss);
                     break;
                 case 4:
-                    System.out.println(p.getBoss().mostrarVida());
+                    System.out.println(boss.mostrarVida());
                     break;
-                default:
+                case 5:
+                    player.trocar();
+                    System.out.println("atkFísico: "+ player.getAtkFis());
+                    System.out.println("atkMágico: "+ player.getAtkMag());
+                    break;    
+                case 6:
+                    i = false;
                     break;
+                    
+            }
+            if(boss.mostrarVida()<=0){
+                System.out.println("BOSS DERROTADO!");
+                break;
             }
         }
-        scan.close();
+    }
+
+    public static void IABoss(IBoss boss){
+        Random r = new Random();
+        int i = r.nextInt(100);
+        if(i%2 == 0) {
+            boss.trocar();
+            System.out.println("As Defesas do BOSS foram realinhadas");
+        }           
     }
 
     public static void main(String[] args) {
@@ -61,19 +86,16 @@ public class Main {
                     int boss = scan.nextInt();
                     switch (boss) {
                         case 1:
-                        PaladinBoss paladino = new PaladinBoss();
-                        p.setBoss(paladino);
-                        batalhaBoss(p);
+                            PaladinBoss paladino = new PaladinBoss();                       
+                            batalhaBoss(p, paladino);
                             break;                   
                         case 2:
-                        SageBoss sage = new SageBoss();
-                        p.setBoss(sage);
-                        batalhaBoss(p);
+                            SageBoss sage = new SageBoss();
+                            batalhaBoss(p,sage);
                             break;
                         case 3:
-                        LadinoBoss ladino = new LadinoBoss();
-                        p.setBoss(ladino);
-                        batalhaBoss(p);
+                            LadinoBoss ladino = new LadinoBoss();
+                            batalhaBoss(p,ladino);
                             break;
                         case 4:
                             break;   
