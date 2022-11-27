@@ -3,13 +3,13 @@ package ataques;
 import interfaces.IAtaques;
 
 public class AtaqueUltimate implements IAtaques{
-    private int dano;
+    private int danoUlt;
     public AtaqueUltimate(){}
     @Override
     public void atacar(int fis,int mag) {
-        this.dano = fis+mag;
+        this.danoUlt = fis+mag;
     }
     public int mostrarDano() {
-        return dano;
+        return danoUlt;
     }
 }

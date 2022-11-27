@@ -3,15 +3,15 @@ package ataques;
 import interfaces.IAtaques;
 
 public class AtaqueMagico implements IAtaques{
-    private int dano;
+    private int danoMagico;
     public AtaqueMagico(){}
     @Override
     public void atacar(int fis,int mag) {
-        this.dano = mag;
+        this.danoMagico = mag;
     }
     @Override
     public int mostrarDano() {
-        return this.dano;
+        return this.danoMagico;
     }
     
 }
